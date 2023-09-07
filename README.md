@@ -54,6 +54,8 @@ Start Date : 14 August 2023
 
 - <b>Section 23</b> - [Loan Data Example with Numpy](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2023)
 
+- <b>Section 24</b> - ["Absenteeism" Exercise](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2024)
+
 <h5 align="center">
 Last Updated : 7 September 2023
 </h5>
