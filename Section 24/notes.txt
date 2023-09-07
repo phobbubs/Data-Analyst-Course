@@ -1,0 +1,16 @@
+24 Absenteeism Exercise
+
+Variable
+* Mathematics: a symbol or a letter that stands for a number we don’t know yet (x, y)
+* Data Analytics (& Economics) : a characteristic or a quantity that may change its value over time under different circumstances
+    * Independent/Explanatory Variable (explains the dependent variable)
+    * Dependent Variable (affected by the independent variable)
+    * Variables = Feature = Attribute = Input
+* Programming: acts like a storage location which contains a certain amount of information
+
+Vector / Matrix
+* Math: as expected
+* Programming: array (Python)
+
+* DA: Data table
+* Programming: DataFrame (Python)
