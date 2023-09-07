@@ -1,0 +1,48 @@
+5 Fundamentals for Coding in Python
+
+OOP (Object Oriented Programming)
+Logical Objects - Floats, Strings, Integers, Lists
+
+Object - Data + Manipulation Operations
+
+Class (defines rules for creating that object) -> Object (instance) -> Attributes (properties) -> Method
+
+Function vs Method
+* Function - can have many parameters, exists on its own, function()
+* Method - object is one of its parameters, belongs to a certain class, object. method()
+
+Different types of pre-written code:
+* Module - definitions of variables, functions and classes, can be loaded in all new programs
+* Package - a collection/directory of related python modules, community has developed a growing set of packages for various types of professions and specialisations, i.e. Library
+* Python Standard Library - collection of modules available as soon as python is installed
+
+Importing Modules
+1. Import math
+    1. math.sqrt(16)
+2. From math import sqrt
+    1. sqrt(25)
+3. From math import sqrt as s
+    1. s(36)
+4. Import math as m
+    1. m.sqrt(49)
+5. From math import * (everything)
+    1. sqrt(64)
+6. help(math) (opens up help)
+
+Numpy - fundamental package for scientific computing with Python (numeric python)
+	scalars, vectors, matrices, apply advanced mathematical stations on large numbers of data
+Pandas - multiple observations over multiple periods of time (panel data)
+	text, boolean, datetime
+	pandas needs the computational power and abilities of numpy to perform its computations
+	series (single-column data) data frames (multiple-column data)
+Not in python standard library (to import at beginning of code)
+
+Import numpy as np
+np.__version__ (check numpy version)
+(Terminal > pip install numpy —upgrade)
+
+Import pandas as pd
+pd.__version__
+(Terminal > pip install pandas —upgrade) 
+
+Software Documentation
