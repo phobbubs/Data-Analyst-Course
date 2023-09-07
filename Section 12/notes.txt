@@ -1,0 +1,39 @@
+12 Data Gathering / Data Collection
+
+High-level Classification
+* Primary
+    * Data you have created
+    * e.g. conducted survey, sales operations, inventory, account ledger (information that does not exist in any form prior)
+        * Having access to its source is actually very rare
+        * Data may have only been collected for the last few years
+* Secondary
+    * Existing data that somebody else has gathered (acquired from a 3rd party)
+        * Much more common to have access to
+        * Someone on the internet possesses the information you seek
+        * Could be spread out over a couple of datasets but it’s most probably out there
+
+Web Scraping
+* Extracting information programmatically from websites
+    * What google does all the time to determine the type and content of a webpage
+    * Requesting the webpage from a server
+    * Extracting the relevant data from the html document that is sent to you
+* Disadvantages
+    * Not easily scalable and reliable
+        * Depends on specific structure of html
+        * Different program for each individual page
+        * Requires maintenance
+    * Legality
+        * Websites are intended to be used by real people only
+        * Bot activity does not benefit the website owner
+        * A lot of websites forbid web scraping on their pages
+        * Some laws are ambiguous
+APIs
+* The “bridges” of the digital world
+* Obtain data from a non-downloadable package
+    * Designed specifically for programmatically data exchange
+    * The workflow and all related systems are streamlined and easy to use
+    * They can provide data in many areas and formats
+    * .json and .csv most popular
+* Provide a programmatically way to obtain the latest data at any time
+* Advantages
+    * Requires very little maintenance
