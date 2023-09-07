@@ -1,0 +1,128 @@
+20 Statistic with NumPy
+
+Mean
+* Arithmetic average of all the values in the dataset
+np.mean()
+np.mean(matrix_a, axis = 0)			#mean of every column (0 - column, 1 - row)
+* Preference of using functions > methods
+
+Min & Max Values
+np.min(matrix_a)					#minimum value of flattened array
+np.amin(matrix_a)					#a - array, specifically designed for working with arrays
+np.minimum(matrix_a[0], matrix_a[2])
+								#requires at least 2 input arrays
+								#compares the values at the same position in each of the arrays before taking the lowest one
+								#output has the same shape as the inputs
+np.minimum.reduce(matrix_a)		#reduce immediately breaks down the rows
+								#works similarly to np.min(matrix_a, axis = 0)
+* Max works similarly
+
+Statistical Order Functions
+
+np.ptp()
+peak to peak
+* Returns the difference between the highest and lowest values within an array
+np.ptp(matrix_a)
+np.ptp(matrix_a, axis = 0)
+np.ptp(matrix_a, axis = 1)
+
+Percentile
+* A value that is greater than the corresponding % of the dataset
+* The 70th percentile is greater than 70% of the data
+* We’re 70% through a sorted version of the array (in increasing order)
+np.percentile(matrix_a, 70)
+np.percentile(matrix_a, 70, interpolation = "midpoint")		#midpoint to get exactly between the integer values
+np.percentile(matrix_a, 70, interpolation = “higher”)
+np.percentile(matrix_a, 70, interpolation = “lower”)	
+np.percentile(matrix_a, 70, interpolation = “nearest”)		#recommended
+
+Quantile
+* A value that is greater than the corresponding part of the dataset
+* 70th percentile = 0.7 quantile
+* Quantile is between 0 and 1
+
+Averages and Variances
+Median
+* The middle value of a sorted dataset
+
+np.median()
+* takes an input array and returns its median value
+* If there are an even number of elements, it’s the average of the two middle ones
+
+np.average()
+* Similar to np.mean()
+* Can compute the weighted average of a dataset
+
+Variance
+np.var(matrix_a)			#only requires a single output
+* A measure of how far a set of numbers is spread out from their average value
+* Squared of standard deviation
+
+Standard Deviation
+np.std(matrix_a)			#variance = standard deviation^2
+* Measures the dispersion of a dataset relative to its mean
+* Square root of variance
+
+Covariance and Correlation
+
+Covariance
+np.cov(matrix_a)
+* Requires a single input variable
+* Covariances between different rows of matrix a
+* Will be symmetrical diagonally, diagonal covariance numbers represent the covariance within each row
+* Cov(A, B) = Cov(B, A)
+* Cov(X, X) = Var(X)
+
+Correlation Coefficient
+np.corrcoef(matrix_a)
+* Expect a symmetrical matrix
+* Finds the relationship between every 2 rows of the array
+* Corr(X, X) = 1
+
+Histograms in NumPy
+* A way to examine a dataset by dissecting its density
+* How many values of the original dataset fall within each interval (bin)
+np.histogram(matrix_a)
+* Output of 2 arrays
+* 1st array -> number in each bin
+* 2nd array -> bin edge (# of bins + 1)
+* Bins are closed-open intervals [a, b)
+    * Value equals the lower edge of a bin, it counts towards the bin
+    * If it equals the upper edge of a bin, it doesn’t count
+
+np.sort(matrix_a, axis = None)						#helps visualise flattened and sorted data set
+
+np.histogram(matrix_a, bins = 4)						#can specify number of bins, default is 10
+np.histogram(matrix_a, bins = 4, range = (1,7))			#defining a fixed interval implies a maximal and minimal value which are incorporated in the bin
+
+* To view histogram, need to import matplotlib
+import matplotlib.pyplot as plt
+plt.hist(matrix_a.flat, bins = np.histogram(matrix_a)[1])
+plt.show()
+
+2-D Histogram
+np.histogram2d(matrix_a[0], matrix_a[1], bins = 4)
+* Output of a tuple (3 arrays)
+    * 1st array: density array
+    * 2nd array: bin edges for matrix_a[0], x-axis
+    * 3rd array: bin edges for matrix_a[1], y-axis
+￼
+￼
+
+Multi-dimensional Histogram
+np.histogramdd(matrix_a.transpose(), bins = 4)
+* Nested array in 1st array output = density tensor
+    * Depicts the density in 3 dimensions
+    * One for each array of the input matrix
+
+
+NAN Equivalent Functions
+
+* Functions that work on arrays with missing values in them
+
+np.nanmean(matrix_a)				#nan equivalent of np.mean()
+
+Scenario: incomplete data
+matrix_b = np.array([[1,0,0,3,1],[3,6,np.nan,2,9],[4,5,3,8,0]])
+np.nanmean(matrix_b)
+np.mean(matrix_b)					#NAN, does not provide any numeric value when facing incomplete data
