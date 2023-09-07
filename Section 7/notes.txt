@@ -1,0 +1,34 @@
+7 Numpy Package
+
+A collection of pre-written functions, classes and methods which are capable of handling and manipulating data and calculating results
+Main Feature: Arrays
+A type of data structures, which store elements and refer to their values via integer indices
+
+Incredibly computationally stable and efficient
+- Works in a lower-level language => shorter computation times
+Pandas -> stores multiple types of data simultaneously
+
+Use when:
+- Compute a lot of values for analysis
+- Deal with vectors and matrices
+- Import and pre-process data into python directly
+- Generate random tests
+
+How to make use:
+- N-D array class - more useful when computing values bc operations work element wise
+Functions (faster than python)
+- Np.function_name(ndarray)
+Methods (faster than python)
+- ndarray.method_name()
+Operations
+- Broadcasting, type casting
+
+Terminal > pip install numpy (already installed in anaconda)
+Terminal > pip install numpy —upgrade
+
+N-D ARRAY = N-dimensional array
+0-D array -> a single data point (scalar)
+1-D array -> a sequence of values (vector)
+2-D array -> a collection of 1-D sequences (matrix)
+
+Numpy documentation -> https://numpy.org/devdocs/
