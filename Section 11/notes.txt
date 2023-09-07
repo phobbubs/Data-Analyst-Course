@@ -1,0 +1,74 @@
+11 Must-know Python Tools
+
+* Iteration - Iterable
+
+For i in t:						#i -> loop variable = iterator variable, t -> itererable, any object that you can iterate (loop) over
+	Print (i, ends “ “)
+For I in range n				#n is the no. of iterations desired
+
+Sequences - elements in a sequence - tuples, lists (sequence of numbers), string (sequence of character)
+
+Nest Loops
+- Sequences, range objects, iterations
+for i in range(2):		#i-loop (outer loop, rows)
+    for j in range(5):		#j-loop, nested in the i-koops (inner loop, columns)
+        print ([i,j])
+* Associated with a data table
+
+Triple Nested for Loops
+for i in products:
+        for j in exp_sales:
+            for k in time_horizon:
+                print ([i, j*k])
+* Inner loops must complete all interactions before we can refer to an outer loop
+* Best practice: use specific names for iterator variables
+* Writing nest loops -> non-pythonic, means there’s a better pythonic way to do it
+
+List Comprehensions
+- Easy to understand, quick to write
+e.g. to improve
+new_numbers = []						#empty list
+for n in numbers:
+    new_numbers.append(n * 2)			#append to empty list
+print(new_numbers)
+
+An output expression for an element in iterable
+e.g. improved
+new_numbers = [n * 2 for n in numbers]							#improved using list comprehension
+print(new_numbers)
+
+e.g.2
+for i in range(2):											#triple nested loop
+    for j in range(5):
+        print(i + j, end = " ")
+e.g. 2.1 improved
+new_list_comprehension_1 = [i+j for i in range(2) for j in range(5)]	#for triple nested loop
+new_list_comprehension_1
+e.g. 2.2 improved
+new_list_comprehension_2 = [[i+j for i in range(2)] for j in range(5)]	#for output of list within list
+new_list_comprehension_2
+
+e.g.3
+for i in range(1, 11):
+    if i % 2 != 0:
+        print(i ** 3, end = " ")
+e.g. 3.1
+[num ** 3 for num in range(1, 11) if num % 2 != 0 ]
+e.g. 3.2
+[num ** 3 if num % 2 != 0 else "even" for num in range(1, 11)]		#if must be followed with else
+
+* Conditionals can be placed on right of iterable to filter out certain values from the iterable
+
+Anonymous (Lamba) Functions
+* There are cases in which you will prefer not to define a whole new function
+* Create a function that will allow you focus on the function itself -> anonymous function
+
+def raise_to_the_power_of_2(x):
+    return x ** 2
+
+raise_to_the_power_of_2_lambda = lambda x: x ** 2
+
+(lambda x: x / 2)(11) -> 5.5
+
+sum_xy = lambda x, y: x + y(x)								#if variable is a function, input needs to be a function as well
+sum_xy(2, lambda x: x * 5)
