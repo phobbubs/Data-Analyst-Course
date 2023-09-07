@@ -1,0 +1,57 @@
+18 Working with Arrays
+
+Basic Slicing
+* Creating a new array by taking chunks of values out of an existing one
+* Consists of adjacent pieces of data (can contain entire row, column, or parts)
+* Interval indexing
+
+array[:]			#entire ndarray (: - interval)
+array[0:0]		    #empty array
+array[0:1]		    #everything in the interval between the first two rows (i.e. everything before row 2)
+array[0:2]		    #everything before row 3
+array[:1]			#everything before row 2
+array[1:]			#everything from row 2
+
+* Similar to indexing (indexing = specific indexing)
+
+	array[row, column]
+For 3-D array:
+	array[subarray, row, column]
+
+Stepwise Slicing
+* Don’t take consecutive values
+* Values which are a certain distance (step) apart
+matrix[row_start:end:step, column_start:end:step]
+* Step is set to 1 by default
+* Negative indices and steps -> start from the bottom of the matrix and move up
+
+Conditional Slicing
+matrix_c = np.array([[1,1,1,2,0],[3,6,6,7,4],[4,5,3,8,0]])
+matrix_c[:,:] > 2
+->	array([[False, False, False, False, False],
+       [ True,  True,  True,  True,  True],
+       [ True,  True,  True,  True, False]])
+
+matrix_c[matrix_c[:,:] > 2]
+->	array([3, 6, 6, 7, 4, 4, 5, 3, 8])
+* Output is a 1-D array
+    * Numpy doesn’t know how many of these elements would fit this condition
+    * Python takes the flattened array (1-D) and applies the condition on it
+
+matrix_c[(matrix_c[:,:] % 2 == 0) & (matrix_c[:,:] <=4)]
+* & - and
+
+matrix_c[(matrix_c[:,:] % 2 == 0) | (matrix_c[:,:] <=4)]
+* | - or
+
+Squeeze Function
+
+print(matrix_d[0,0].shape)		    -> ()
+print(matrix_d[0,0:1].shape)		-> (1,)
+print(matrix_d[0:1,0:1].shape)		-> (1,1)
+* Different dimensionalities depending on syntax
+
+Squeeze method: removes all the unnecessary dimensions of an array
+[[1]] -> 1
+np.squeeze(matrix_d[0:1,0:1])
+matrix_d[0:1,0:1].squeeze()
