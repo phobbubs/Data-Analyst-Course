@@ -1,0 +1,22 @@
+14 Data Cleaning & Data Preprocessing
+
+Data Cleaning / Cleansing:
+* Applying certain analytical and programming techniques to convert an incomprehensible dataset into a meangingful and quality format we can use for further processing
+* This step aims to fix the problems that will inevitably occur with data gathering
+* After this, the computer can read the information smoothly and perform statistical and mathematical computations
+* Ensure data is deprived of inconsistencies
+* i.e. a bridge between 2 parts of analytical flow, programming <-> Statistics, Mathematics, Predicative Models->Visualisations, Analytical Inferences
+
+Data Preprocessing:
+* Re-categorisation of the data
+* Inputing missing values
+* Shuffling
+* Applying statistical methods
+
+Round 1. The ideal analytical flow: Data gathering -> Cleaning -> Pre-processing -> Visualisation
+Round 2. Interactive Visual Analysis (data wrangling, munging): back n’ forth
+
+* Domain knowledge
+* Analytical flow guidance
+* Respect deadlines
+* Prioritise quality of results
