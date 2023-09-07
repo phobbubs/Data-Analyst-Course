@@ -1,0 +1,96 @@
+10 Working with Text Data
+
+ Text Information > Text Manipulation
+
+Text Data
+* Information or data which represents text, as opposed to numbers, boolean or instance
+Text Files
+* Files containing information from the text data type only
+* .json, .csv, .html
+
+Text Data
+* API
+* Web Scraping
+* Machine Learning
+* Quantitative Analyses
+
+Text Information -> Appropriate Format using Text Manipulation Tools
+
+* Will often want to print out information stored in your Python objects as text
+    * print(), string, object, Argument specifier, Modulus operator
+
+Argument Specifier
+* a combination of symbols that indicates the place within the string where you’d like to insert information from a separate object (the argument)
+* Specifies the data type of that argument
+* %s - argument specifier for strings
+* &d - argument specifier for numerics (digits)
+* %f - argument specifier for float values (%.2f - for 2 decimal place, etc.)
+
+Modulus Operator (%)
+* Allows us to print the variable form which we’d like to obtain information and insert it into the original string
+
+product_category = 'A'
+print('This item is from product category "%s".' % product_category)		# prints “This item is from product category “A”.
+
+product_category = [‘A’,’B’]
+print('This item is from product category "%s".' % product_category[1])	# prints “This item is from product category “B”.
+
+i = 1
+print ("Currently, we have %d units of Category \"%s\" products in store." % (quantities[i],product_category[i]))
+															# prints Currently, we have 600 units of Category "B" products in store.
+
+Manipulating Python Strings
+\ - backslash
+	\n - new line, end of line (EOL), line ending, line feed, line break
+	\t - tab
+	\r - carriage return - shifts, or carries, all subsequent characters to the beginning of the string, replaces the same number of characters at the start
+Special/escape character
+Indicates certain whitespace characters within a Python string
+
+Using Various Python String Methods
+String methods - a text manipulation technique
+	s = a string
+	s1 = s.replace(word to replace, replacement word)
+	s1.startswith(‘replacement word’) -> True/False
+	s1.endswith(‘replacement word’) -> True/False			#does not have to be the entire word
+	s1.split()											#returns list of string values
+	s1.split(‘ ‘)										#include whitespace character
+	s1.split(‘middle word’)								#middle word will be removed from list
+	s1.split(‘ ‘, maxsplit = 0)								#no splits will take place, gives a single string
+	s1.split(‘ ‘, 0)										#same output as above
+	s1.split(‘ ‘, 1)										#will split into different numbers of strings
+	s2 = ‘A, B , C’
+	s2.split(‘,’)	-> [‘A’, ‘B’, ‘C’]
+	s2.split(‘,’)[2]	-> ‘B’
+
+String methods that can change the case of the characters
+s3.upper()
+s3.lower()
+s3.capitalize()
+s3.title()
+
+String methods used for stripping characters
+.strip -> looks for any of the characters specified between the quotes in both ends of the given string and removes these characters until it encounters a different character
+S4 = ‘ quarterly earnings report ‘
+s4.strip()						#remove whitespace characters at beginning and end
+s4.strip(‘ ‘)					#same output as above
+s4.strip(‘ qt’)					#removes q and t at the beginning and end
+s4.strip(‘qt’)					#no change, must include whitespace
+s4.lstrip()						#removes whitespace at beginning
+s4.rstrip()					#removes whitespace at end
+
+String Accessors
+Help us access the string values that have been stored in the given (pandas) Series
+text_series.str.lstrip(‘text’)		#strips ‘text’ from strings in text_series
+text_series.str.contains(‘$’)		#boolean if text_series values contain $
+
+Using the .format() Method
+For preprocessing text data
+Applicable to string values only
+template.format(argument 1, argument 2)
+{} - placeholders where we will insert the value that have been passed as arguments in the .format() method
+e.g.
+'Expected sales for a period of {} month(s) for {}:'.format(time_horizon[2], products[1])
+'Expected sales for a period of {0} month(s) for {1}:'.format(time_horizon[2], products[1])			#specifies position of arguments
+'Expected sales for a period of {t_hor} month(s) for {prod}:'.format(t_hor = 12, prod = 'Product B')	#keyword arguments = named arguments
+'Expected sales for a period of {t_hor[2]} month(s) for {prod[1]}: ${sales}.'.format(t_hor = time_horizon, prod = products, sales = 10000)
