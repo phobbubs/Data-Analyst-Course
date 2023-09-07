@@ -1,0 +1,138 @@
+13 APIs
+
+: Applicational Programming Interface
+
+* Specifies how software components should interact
+
+* A “contract” between a client and a server
+* Web-based APIs
+* Other forms: application and operating system, hardware and software
+* e.g. currency exchange rates, job boards, weather forecasts, etc.
+* Incorporate a third-party functionality
+* Access to obscure or constantly changing real-time data
+
+* All APIs should have some form of documentation on how to use it
+
+A common step: making a http request
+
+GET & POST Requests
+HTTP: HyperText Transfer Protocol
+- Specifies how requests and responses are to be formatted and transmitted
+* Downloading these files to our computer -> request to server -> responses to request
+
+GET Request
+* Used to obtain data from a server
+* Can be bookmarked
+* Parameters are added directly to the URL
+* Not used for sensitive information
+
+POST Request
+* Alter state or send confidential information
+* Parameters are added in a separate body
+
+Responses
+* Status Code:
+    * 200 - processed successfully
+    * 404 - error
+* Body of the response
+    * HTML from webpage -> .json for APIs
+
+Data Exchange Format for APIs: JSON
+* A standard format for data exchange (“JavaScript Object Notation”)
+    * Easy for humans to read and write
+    * Easy for programs to process and generate
+    * Written in plain text
+* Built upon 2 structures
+    * Dictionary
+        * {key1: value1, key2: value 2, …}
+    * List
+        * [item 1, item 2, …]
+* .json contains data for multiple entries
+
+Exchange Rate APIs
+base_url = “https:…”
+
+Sending a GET request
+import requests
+response = requests.get(base_url)
+
+Attributes
+Response.ok				#returns True/False
+response.status_code		#returns 200/404/400 - bad request
+response.text				#returns data in text format
+response.content			#returns data in bytes format
+response.json				#convert data to json format (dictionaries)
+
+To improve readability -> use in-built python .json package
+* loads(string): convert a .json formatted string to a python object
+* dumps(obj): converts a python object back to a regular string, with options to make the string prettier
+import json
+json.dumps(response.json(), indent=4)				#to make string “prettier” and more readable, specify no. of indents
+print(json.dumps(response.json(), indent=4))		#to visualise the indentations, must print
+response.json().keys()							#return keys in json file
+
+Including Parameters in a GET Request
+param_url = base_url + "?symbols=SGD,GBP"				#request parameters appended after ? (Depends on API documentation)
+response = requests.get(param_url)						#making a request to the server
+response.status_code									#check response is 200
+data = response.json()									#saving the response data, output is a dictionary
+param_url = base_url + “?symbols=GBP” + “&” + “base=USD”	#change base parameter based on API documentation
+data = requests.get(param_url).json()						#sending a request and saving as .json
+usd_to_gbp = data[‘rates’][‘GBP’]
+
+Currency Conversion Calculator
+		# Gathering input parameters from the user
+date = input("Please enter the date (in the format 'yyyy-mm-dd' or 'latest'): ")
+base = input("Convert from (currency): ")
+curr = input("Convert to (currency): ")
+quan = float(input("How much {} do you want to convert: ".format(base)))
+
+		# Constructing the URL based on the user parameters and sending a request to the server
+url = base_url + "/" + date + "?base=" + base + "&symbols=" + curr
+response = requests.get(url)
+
+		# Displaying the error message, if something went wrong
+if(response.ok is False):
+    print("\nError {}:".format(response.status_code))
+    print(response.json()['error'])
+
+else:
+    data = response.json()
+    rate = data['rates'][curr]
+    
+    result = quan*rate
+    
+    print("\n{0} {1} is equal to {2} {3}, based upon exchange rates on {4}".format(quan,base,result,curr,data['date']))
+
+Passing the Parameters Request (iTunes)
+base_site = "https://itunes.apple.com/search" r = requests.get(base_site, params = {"term": "the beatles", "country": "us"})				#preferred method to omit need for symbols i.e. the+beatles
+r.status_code																	#check request went through ok
+r.url																			#check url request is submitted to
+info = r.json()
+print(json.dumps(info, indent=4))													#inspect responses’ .json
+info.keys()																	#result is very long, check no keys are overlooked
+print(json.dumps(info['results'][0], indent=4))										#see second dictionary, contains a lot of data
+r = requests.get(base_site, params = {"term": "the beatles", "country": "us", "limit": 200})		#setting 200 as a limit parameter
+r.ok
+
+Structuring and Exporting the Data
+* Using pandas
+songs_df = pd.DataFrame(info["results"])			#creating data frame with .json
+songs_df.to_csv("songs_info.csv")					#saving as .csv
+songs_df.to_excel(“songs_info.xlsx”)				#saving as excel
+
+Pagination
+len(r.json())									#to check how many pages
+											#page parameter
+r = requests.get(base_site, params = {"page": 10})
+r.status_code									
+											#extracting request from several pages
+results = []									#create empty list
+for i in range(5):
+    r =  requests.get(base_site, params = {"page": i+1})
+    
+    if len(r.json()) == 0:   							# We have reached the end of the results
+        break
+    else:
+        											# Add the response results to our list of results
+        results.extend(r.json())
