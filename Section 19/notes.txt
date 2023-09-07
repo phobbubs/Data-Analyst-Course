@@ -1,4 +1,4 @@
-18 Working with Arrays
+19 Working with Arrays
 
 Basic Slicing
 * Creating a new array by taking chunks of values out of an existing one
