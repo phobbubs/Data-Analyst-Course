@@ -1,4 +1,4 @@
-19 Generating Data with NumPy
+20 Generating Data with NumPy
 
 Functions that quickly generate array of data
 
