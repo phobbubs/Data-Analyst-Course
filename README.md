@@ -32,6 +32,8 @@ Start Date : 14 August 2023
 
 - <b>Section 12</b> - [Data Gathering/Data Collection](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2012)
 
+- <b>Section 13</b> - [APIs](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2013)
+
 - <b>Section 14</b> - [Data Cleaning and Data Preprocessing](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2014)
 
 - <b>Section 15</b> - [pandas Series](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2015)
