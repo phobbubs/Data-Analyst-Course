@@ -1,4 +1,4 @@
-20 Statistic with NumPy
+21 Statistic with NumPy
 
 Mean
 * Arithmetic average of all the values in the dataset
