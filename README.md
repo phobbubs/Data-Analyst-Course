@@ -10,7 +10,7 @@ Start Date : 14 August 2023
 
 ## Contents
 
-- <b>Section 15</b> - [pandas Series](https://github.com/phobbubs/100-Days-of-Code/tree/main/Day%201)
+- <b>Section 15</b> - [pandas Series](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2015)
 
 <h5 align="center">
 Last Updated : 7 September 2023
