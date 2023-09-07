@@ -10,7 +10,29 @@ Start Date : 14 August 2023
 
 ## Contents
 
+- <b>Section 2</b> - [Introduction to Data Analytics](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%202)
+
+- <b>Section 3</b> - [Setting up the Environment](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%203)
+
+- <b>Section 4</b> - [Python Basics](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%204)
+  
+- <b>Section 5</b> - [Fundamentals for Coding in Python](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%205)
+
+- <b>Section 6</b> - [Mathematics for Python](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%206)
+
+- <b>Section 7</b> - [NumPy Basics](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%207)
+
+- <b>Section 8</b> - [pandas Basics](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%208)
+  
 - <b>Section 9</b> - [Working with Text Files](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%209)
+
+- <b>Section 10</b> - [Working with Text Data](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2010)
+
+- <b>Section 11</b> - [Must-Know Python Tools](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2011)
+
+- <b>Section 12</b> - [Data Gathering/Data Collection](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2012)
+
+- <b>Section 14</b> - [Data Cleaning and Data Preprocessing](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2014)
 
 - <b>Section 15</b> - [pandas Series](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2015)
 
