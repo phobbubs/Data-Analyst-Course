@@ -1,0 +1,219 @@
+8 Working with Text Files
+
+File - any item that can be created, modified, stored or deleted by the user or operating system
+* For data cleaning and data pre-processing
+
+Python - maintains 2 categories of files
+1. Text file = flat files = ASCII file (American Standard Code for Information Interchange)
+    1. A sequence of lines of so-called electronic text. Each line on its own is structures as a sequence of characters
+    2. A,B,C 1,2,3 %,[,* (text data =/= text file - data which represents text as opposed to boolean)
+    3. End of Line character (EOL)
+    4. Easy and fast transfer of data
+    5. Doesn’t contain metadata (only contains data as text)
+2. Binary File
+    1. Written in any binary (machine) language (0 1)
+    2. Does not contain line terminators
+
+File vs File Object
+File
+* Item that can be created, modified and stored by a user or an operating system
+* A,B,C - text file
+* 010101 - binary file
+File Object
+* A python object that contains data imported from a file
+* Import the file
+* Convert the file into an object
+* Modify an object
+
+Reading vs Parsing
+Reading
+* Simply transferring its text (content) into the computer’s memory (working memory/RAM)
+Parsing (syntactic analysis)
+* Trying to understand the purpose of this python object
+Text File -> Reading -> Python -> Text Object -> Parsing
+
+Data Structure
+* Structured (traditional data)
+    * Tabular form
+    * Can be stored in databases
+    * Easy and quick access to a specific data value
+    * e.g. excel spreadsheet, SQL database, pandas’ DataFrame
+* Semi-structured
+    * Using different patterns for storing and organising the data for easier access and analysis
+* Unstructured
+    * Information that is organised in a way that makes finding a specific piece of it is actually hard
+
+Better structure -> faster navigation
+
+Big Data: refers to extremely large data sets that have been allocated on multiple computers
+- Velocity 
+- Volume
+- Variety
+
+Data Connectivity through Text Files
+* Different pieces of software of software products, communicate through text files of one form or another
+* Most common text file formats:
+    * .json, .xml, .csv, .txt, .xlsx
+Focus on: .csv - perfect for sorting tabular data, .json - all modern programming languages can read, export to, or work with this
+If team relies on Excel for analyses: .xlsx - facilitates workflow of whole team
+
+Types of text files:
+* **Plain text file: any text file that contains no formatting, no B, I, font styles (text only, i.e. notepad)
+* Rich text file: contains certain formatting, B, I, font styles, alignment, pictures, shapes (i.e. Microsoft word) -> file extensions: .doc, .docx
+
+Data usually comes combined in a text file
+To distinguish between values, specific characters are needed to indicate where a value starts and ends and where the end of a line is
+* Character: any mark or symbol that you can use in writing 
+    * Letters - Location
+    * Digits - numbers
+    * Punctuation Marks - , ;
+* Needs character encoding specification
+Encoding: process of converting or ‘translating’ text information into bytes
+- Programme interpreter to encode into machine language, and decode back to text
+* UTF-8 (8-bit unicode transformation format) - dominant character encoding today
+* A separator: a character that will separate the values in your file
+    * , ; -> space
+* End-of-line character (EOL): informs the interpreter that a new line shall begin right after
+    * /n ,
+* End of file (EOF): a signal, or a condition, that there are no more characters contained in the text file
+
+Plain Text Files
+- Non formatted text
+- Each data value Is stores on a separate line (no separators)
+Flat Files (.csv)
+- Non formatted text
+- Resembles a plain text file (has separators, separators help form a structure that corresponds to a single data table)
+- Uses traditional type of data structure
+.csv files -> flat files: comma-separated value =/= character-separated values =/= delimiter (sep)-separated values =/= tab-separated value
+- Values have been separated by a comma =/- separated by other characters =/= delimiter is not a separator, defines distinct fields like cells in a row or rows in a table, any delimiter is a separator but a separator may also be just a space separating two words
+
+Relational database - typically contains multiple data tables that relate to each other in a certain way -> provides more flexibility and consistency in data
+Flat File Database - a flat file corresponds to a single table from the relational database, denotes a relational database composed of a single data table
+
+Fixed-width data file
+- A flat file containing fixed-width data formatting (a delimiter has been included to make identical, or to fix, the fields in which data values have been stored)
+- e.g. fixed column widths, pad characters, left/right alignment
+- Not commonly used, problematic at the various stages of data preprocessing
+
+Common Naming Conventions
+* UpperCamelCase - multiple words that are attached in a sensible order, first letter of each of these words is capital
+    * used to name classes or column names
+* lowerCamelCase - first letter of only the first word is lowercase
+* lowercase_letters_separated_by_underscores = snake_case
+    * DON’T: class names, constants
+    * DO: functions, variables
+* Kebab-case - multiple words separated by a hyphen, useful while sending files over the internet
+    * Text files
+1. Don’t use whitespaces when naming files or programming entities
+2. Use names that are concise and specific
+
+filename = “source.txt” 			#save in the same folder, if not, designate the path to the file before the file’s name still within the string, “”C:/Users/x/x/x/source.txt”
+file = open(filename, mode = ‘r’) 	#Import text file into a file object in Python, create backups of files before importing the into python objects, ‘r’ = read
+file.read() 						#read method
+file.closed 						#make sure to always close all connections to file system that is opened, to check if file is closed
+file.close() 						#close method to close file
+
+with open(filename, mode = ‘r’) as out_file:		#with closes file automatically
+	out_file.read()
+with open(‘source.txt’, ‘w’) as out_file:			#’w’ -> write
+	out_file.write(“xxx”)							#.write will overwrite information previously stored in source.txt
+with open(filename, mode = ‘r’) as out_file:
+	new_text = out_file.read()
+Print(new_text)
+
+* Use with statement as much as possible
+* Be careful using write mode as initial content of text file may be lost
+
+Import .csv file with pandas
+pd.read_csv(‘Lending-company.csv)				#reads csv file in tabular format, can read .txt files as well
+pd.read_csv(filename, index_col = ‘LoanID’)		#assigns LoanID column as new index column
+
+Sometimes dataset will be messier than you’d life -> may want to inspect it before importing into notebook document
+- Sublime, notepad ++, atom
+
+Importing Data with NumPy
+- 2 ways to import text files into python
+1. np.loadtxt(filename, delimiter = ‘,’, dtype = np.str) - “load” implies the data is ready to be directly imported and used, fast of the 2 but breaks when fed incomplete or ill-formatted datasets
+2. np.genfromtxt(filename, delimiter = ‘;’) - “generate” indicates that the function creates the dataset from the text file, requires constructing the array as we go through the text file, slightly slower but can handle missing values
+
+Partial Cleaning while Importing
+* NAN - not a number
+np.genfromtxt(filename, delimiter=‘;’, skip_header = x,		#skip_header removes top x rows, skip_footer removes bottom x rows
+							usecols = (5,0,1))				#extracts columns at index 5, 0, 1
+
+Import .json file
+1. Human-readable
+2. Universal format
+3. Organised as plain text
+- Content ins simply a string
+To parse string into dictionary:
+Import json								#import json
+parsed_str = json.loads (string_of_dictionary)	#.loads() to parse
+Import pandas
+pd.read_json(‘Lending-company.json’)			#read file with pd.read_json(), becomes a DataFrame
+
+Working with Excel Files
+- Reading and displaying text files are different functionalities (opening with Excel and Notepad++ shows different formats)
+- Open .csv file > Data > Text to Columns > Delimited > Comma (choose) > save as .xlsx (to save as a rich text file, else will remain as a flat file)
+my_xlsx_data = pd.read_excel(filename)
+* .json and .csv form are faster to work with, use .xlsx only if it helps the company
+my_csv_data = pd.read_csv(filename, sep ‘\,’, engine = ‘python’)		#\, for sep
+
+Pandas ‘Squeeze’ Method
+* To obtain a series from a DataFrame
+* Can only be applied to DataFrames with a single column or row
+pd.DataFrame.squeeze()
+.squeeze(0) = .squeeze(“rows”)
+.squeeze(1) = .squeeze(“columns”)
+
+* If text file is not saved in the same folder:
+pd.read_csv('/drive/notebooks/Working with Text Files/Lending-company.csv')		#include file path/location
+* If unable to find file location:
+import os, inspect														# os = operating system
+if '__file__' not in locals():
+    fx = inspect.getframeinfo(inspect.currentframe())[0]
+else:
+    fx = __file__
+os_dir = os.path.dirname(os.path.abspath(fx))
+print(os_dir)
+pd.read_csv(os.path.join(os_dir,"Lending-company.csv"))
+
+To export data to text file with Pandas
+my_data = pd.read_csv(filename)
+my_data.to_csv(‘my-csv-file.csv’)						#to export to .csv
+my_data.to_json(‘my-json-file.json’)					#to export to .json
+my_data.to_excel(‘my-excel-file.xlsx’)					#to export to.xlsx, will be exported with an index
+my_data.to_excel(‘my-excel-file.xlsx’, index = False)		#to remove index from exported file
+
+Saving Data with NumPy - np.save()
+* Saves data in file type - file_name.npy
+np.save(“file-name”, dataset_variable)					#saves npy file to same directory as notebook
+E.g.
+lending_co = np.read_csv(“Lending-Company-Saving.csv”,
+						delimiter = ‘,’,
+						dtype = np.str_)
+np.save(“Lending-Company-Saving”, lending_co)									#save npy file
+lending_data_save = np.load(“Lending-Company-Saving.npy”)						#load npy file
+print(lending_data_save)														#check loaded data
+np.array(lending_data_save, lending_co) -> True/False							#check loaded data is correct
+
+Np.savez()
+* works best with multiple arrays
+* Creates .npz files instead of .npy
+* Npz is like an archive of NPYs that can store multiple arrays
+* Instead of storing different datasets in separate NPY files, we can store all of them in a single NPZ
+* NPZs can be very useful when working with large amounts of data
+* When loading, must specify array that we want to open
+lending_data_savez = np.savez(“Lending-Company-Saving”, lending_co, lending_data_save)		#stores both npy sets into npz
+print(lending_data_savez[“arr_0”])															#load array 0
+np.savez(“Lending-Company-Saving”, company = lending_co, data_save = lending_data_save)		#to set distinguishable names for array
+
+array_npz.files			#using files attribute on npz
+array_npz[“arr_0”]		#reads array 0 (npy)
+
+np.savetxt()
+* To store data into text files (.txt or .csv)
+np.savetxt(“Lending-Company-Saving.txt”,			#specify txt or csv
+			lending_co,				
+			fmt = ‘%s’								#saves data as strings
+			delimiter = ‘,’)
