@@ -1,0 +1,139 @@
+4 Python Basics
+
+type(x)
+Integer (int) -> numbers without decimals
+Float -> real numbers with decimal points
+
+int(x) -> turns number into integer
+Float(x) 0> turns variable into float
+
+x = True/False (must be capital letters) -> type(x) = bool
+
+‘X’ “x” -> string
+
+- Cannot put different variable types into the same line
+
+\ escape character, nullifies the next character
++ adds strings together
+Print (x,y) -> , is a trailing comma, adds space
+
+Arithmetic Operators
++ - / *
+% remainder
+** to the power of
+
+Comparison Operators
+== “equals” for Boolean, if left and right are the same
+!= not equal to, if left and right are not the same
+> greater than
+< less than
+>= great than or equal to
+<= less than or equal to
+
+# Comments - not executed in code
+
+\(enter) continue command on next line
+
+Indexing - count from 0
+“Hello”[3] -> l
+
+Indentation
+
+Logical Operators
+NOT, AND, OR (in order of importance)
+AND - checks whether the 2 statements around it are True
+OR - checks whether at least one of the statements is True
+NOT - leads to the opposite of the given statement
+
+Identity Operators
+IS, IS NOT
+
+Conditional Statement = IF
+If xxxxx:
+	print(“yay”)
+else:
+	print(“boo”)
+
+Def compare_to_five(x):
+	if x >5:
+		return “Yas”
+	elif x<5:
+		return “Naw”
+	else:
+		return “meh”
+
+Defining a Function
+Def simple():
+	print(“holla”)
+
+Def function_name (parameters):
+	return xxx (function body)
+- Only use return once in a function
+- Input -> f(x) -> output
+- Name functions clearly and concisely
+
+Print - does not affect the calculation of the output
+Return - does not visualise the output, specifies what a certain function is supposed to give back
+
+Function within a Function
+
+Combining Conditional Statements and Functions
+
+Functions containing a few parameters - separate with comma
+Def func(x, y, z):
+
+Built-in Functions in Python
+type() - int(), str(), float()
+max(), min() - returns highest/lowest value from a sequence of numbers
+abs() - returns absolute value
+sum() - calculates sum of sequence
+round(1.1234,2) = 1.12, round(1.1234) = 1.0
+pow(x,y) - returns x to the power of y
+len() - returns number of elements in an object
+
+Lists - sequence of data points
+List = [‘x’, ‘y’, ‘z’]
+Name_of_list[sequence no.]
+0 - 1 / 1 - 2 / -1 - last
+Del List[x] - remove object from list
+.append() method - List.append(“w”) - List.extend([‘w’,’v’])
+
+List Slicing
+List[1:3] - extracts 1, and before 3
+List[:2] - extracts first 2
+List[4:].- extracts 4th to last
+List [-2:] - extracts 2nd last to last
+List.index(“x”) - position number
+List_Within_List = [List, List2]
+List.sort() - sort by alphabetical order/ascending numerical
+List.sort(reverse=True) - sort list by reverse
+
+Tuples - three values in (), to hold multiple values
+Similar to lists
+Comma-separated values - “x,y”.split(“,)
+Functions can provide tuples as return values
+
+Dictionaries - another way of storing data
+Key-value pair
+Dict = {‘k1’:’cat’, ‘k2’:’dog’, ‘k3’:’bird’} - curly braces!
+dict[‘k1’] -> ‘cat’
+Team = {} - empty dictionary
+Team[‘k1’] = “x”
+Team[‘k2’] = “y”
+Team = {‘k1’:”x”, ‘k2’:”y”}
+Print Team.get(‘k1’) -> “x”
+
+Iteration (for loops) - ability to execute a certain code repeatedly
+For n in list:
+	print (n, end = “ “)
+
+While loops and incrementing (be careful of infinite loops)
+x = x + 2 == x += 2
+
+List with range() function
+range(start, stop, step)
+Start = first number (not required, more imp than step)
+Stop = last value + 1 (required)
+Step = distance between each 2 consecutive values (least imp)
+ List(range(x)) -> display range sequence as list
+
