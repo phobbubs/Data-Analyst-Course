@@ -1,0 +1,127 @@
+8 Pandas Basics
+
+Pandas documentation - open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools for Python
+
+Name origin: Panel data
+* Data sets that include multiple observations over multiple periods of time
+* Used for a certain type of data tables
+* Built on top of numpy and steps on its computation abilities
+* Pandas requires numpy
+* Most work will be done with the help of 2 high-performance and easy-to-use data structures
+    * Series: single-column data, a set of observations related to a single variable -> 1D array (numpy)
+    * DataFrame: multi-column data, a collection of series objects, which contains observations related to one or several variables, the information is organised into rows and columns -> 2D array (numpy)
+* A certain tool applicable to a series will most probably be relevant to use on a data frame as well
+* Can import and export to many different file formats
+
+1. Pandas Series object is something like a powerful version of the Python list, or an enhanced version of the NumPy array
+2. Preserve data consistency - data values of a single type stored into your Series object or in each column of your DataFrame
+
+Terminal > pip list
+Terminal > conda list
+To see which package has been installed
+Terminal > pip install pandas==1.0.4 (to install specific version)
+Terminal > pip install pandas —upgrade
+pd.__version__
+
+Import pandas as pd
+pd.Series(array) -> left column: index, right column: Data (series), dtype: object (not numeric)
+
+Working with Attributes in Python
+Python objects contain:
+- Data
+- Metadata (information about the data)
+- Related functionalities
+Attribute - a variable providing metadata about an object
+Method - a function that can be associated with an object
+
+Attributes - pandas.Series
+.dtype -> dot notation, data type
+.size -> how many elements in the object
+‘O’ = object - default type assigned to non-numeric data
+
+Object_name -> the name we can use to refer to that object in our code
+The object “name” -> the one you want to see whenever displaying its contents
+
+From pd.Series to ndarray -> object.to_numpy()
+
+Index in Pandas
+- Create series from dictionary
+- Keys -> index values, corresponding to data points
+- Index is a separate value
+1. Index allows reference to a position within a sequence or a set of values in a sequenced order
+2. Able to quickly access prices of the relevant categories through their respective indices
+3. The index data structure will often turn out to be a way to speed up computations while working with large data sets
+
+Data Structure -> Explicit, Implicit
+Indexing -> Label-based, Position-based
+
+RangeIndex type -> position-based indexing = zero-based indexing (implicit indexing, default if index not specified)
+Index / Labels -> label-based indexing (non-numerical) explicit indexing)
+
+pd.Series([10,20,30,40,50], index = [1, 2, 3, 4, 5] -> explicit index
+
+Using Methods in Python
+Attributes - Metadata, Passive
+Methods - Functionalities and behaviour of the object, Active
+
+Functions - independent entity
+Methods - can have access to the object’s data, can manipulate object’s state
+
+Mathematical Methods:
+Series.sum() -> sum method
+series.min() -> minimum method
+Series.max() -> maximum method
+Series.idxmax() -> index label corresponding to the highest value in the series
+Series.idxmin() -> index label corresponding to the lowest value in the series
+
+Non-mathematical Methods:
+Series.head() -> provides quick and efficient way to catch a glimpse of the structure of dataset (first 5 objects of dataset)
+Series.tail() -> last 5 objects of dataset
+
+Parameters & Arguments
+Parameter -> .head() method provides us with the option to choose the number of displayed rows from the object it has been applied to, parameter always has a name
+Argument -> our choice of no. in parameter
+
+Pandas Documentation
+- The Docs (pandas.pydata.org)
+- Structure
+- Efficiency
+- Google: pd.series.head
+- Google: pd.df.head ->df = DataFrames
+- Take note of () in source code
+
+Pandas DataFrame
+- Multi-column data, collection of multiple series objects
+- 2-dimensional data structure with rows and columns -> 2-dimensional numpy array -> 2-D matrix
+- Each column represents different variable
+- Every column contains data of its own type
+- Contains values along 2 axes (rows and columns)
+- Represents a tabular structure
+- Closest python analogue to a standard 2-D dataset, or spreadsheet
+- Can have both row and column labels
+* Single point of reference -> row index (in Series)
+* Two points of reference -> row index & column index (in DataFrame)
+- Enhanced Python Dictionary
+    - Can provide a whole object that contains values of an entire column to the dictionary keys
+    - Inherits the characteristics of the dictionary class
+    - Plus more features and functionalities
+
+Creating DataFrames from Scratch
+Data = dictionary with multiple values per key
+Df = pd.DataFrame(data)
+* Keys become column labels
+Df = pd.DataFrame(data, index = [‘A’, ‘B’, ‘C’] -> to create explicit index labels
+1. From a dictionary of lists
+2. From a dictionary of lists + specifying an index
+3. From a list of dictionaries
+4. From a dictionary of pandas Series
+    1. Add the same no. of indices upon the creation of every Series that is set to represent a column in the new DataFrame
+5. From a list of lists
+    1. df.columns => add column labels
+    2. df.index => add index labels
+6. In a professional way
+    1. Data, columns, index
+        1. Df = pd.DataFrame(data = [[x1,x2], [y1,y2], [z1,z2]], columns = [‘column1’, ‘column2’], index = [‘A’, ‘B’, ‘C])
+    2. df.shape
+
+Series & DataFrames are Constructor Methods
