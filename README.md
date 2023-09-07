@@ -12,6 +12,22 @@ Start Date : 14 August 2023
 
 - <b>Section 15</b> - [pandas Series](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2015)
 
+- <b>Section 16</b> - [pandas DataFrame](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2016)
+
+- <b>Section 17</b> - [NumPy Fundamentals](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2017)
+
+- <b>Section 18</b> - [NumPy DataTypes](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2018)
+
+- <b>Section 19</b> - [Working with Arrays](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2019)
+
+- <b>Section 20</b> - [Generating Data with NumPy](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2020)
+
+- <b>Section 21</b> - [Statistics with NumPy](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2021)
+
+- <b>Section 22</b> - [NumPy Preprocessing](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2022)
+
+- <b>Section 23</b> - [Loan Data Example with Numpy](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2023)
+
 <h5 align="center">
 Last Updated : 7 September 2023
 </h5>
