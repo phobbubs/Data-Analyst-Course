@@ -1,0 +1,114 @@
+19 Generating Data with NumPy
+
+Functions that quickly generate array of data
+
+Arrays of 0s and 1s
+* np.empty()
+    * Creates an “empty” N-D array (returns an array without initialising entries)
+    * Not actually empty
+np.empty(shape = (2,3))
+    * An array is assigned memory from our RAM (allocating unused vs used memory)
+    * Doesn’t produce consistent output, possible to get some random numbers
+* np.zeros()
+    * Creates an array full of 0s
+    * np.zeros(shape = (2,3), dtype = np.int8)
+* np.ones()
+    * Creates an array full of 1s
+    * np.ones(shape = (2,3), dtype = np.int8)
+* Np.full(fill_value)
+    * Fill value required
+    * np.full(shape = (2,3), fill_value = 2)
+
+“Like” functions in NumPy
+* Equivalent to np.empty, np.zeros, np.ones, np.full
+* Don’t need to specify shape or type
+* Need to provide another array whose shape we take
+matrix_a = np.array([[1,2,3,4,5],[1,2,3,4,5],[6,7,8,9,8]])
+array_empty_like = np.empty_like(matrix_a)
+* Convenient when working with huge databases
+
+Generate Non-Random Sequence of Numbers
+np.arange()
+arange = array range
+* NumPy’s equivalent of Python’s range function
+* Creates a sequence of consecutive integer values within a given range
+* Range -> range object
+* Array range -> array
+array_rng = np.arange(30)			#30 not included in the array
+arange(start, stop, step, dtype)		
+
+Random Generators and Seeds
+* Random bit generator
+from numpy.random import Generator as gen
+from numpy.random import PCG64 as pcg
+* Generator function
+    * takes a bit generator as an input and creates generator objects
+* PCG: Permutation Congruential Generator
+    * Function pointers that can produce values of up to 64 bits in size
+array_RG = gen(pcg())				#random generator object
+array_RG.normal()					#normal to check normal distribution
+array_RG.normal(size = 5)			#scalar gives a 1d array
+Array_RG.normal(size = (5,5))		#returns an array of the same size
+
+* Every time we call a method, the Generator randomly selects a “seed”
+* Seed - a set of starting parameters for the algorithm
+* Random dataset -> model
+* PCG specifies a seed for the Generator object
+* Seed only lasts for one execution of a method or function before it is reset
+    * Seed has to be reset every time whenever intended to be used
+
+array_RG = gen(pcg(seed = 365))
+array_RG.normal(size = (5,5))
+
+Basic Random Functions in NumPy
+
+Generate integers and probabilities
+
+* Declare seed every time pseudorandom data is generated
+array_RG = gen(pcg(seed = 365))
+
+array_RG.integers(low = 10, high = 100, size = (5,5))				#min and maximum
+array_RG.random(size = (5,5))										#random nums from 0 to 1
+array_RG.choice([1,2,3,4,5], p = [0.1,0.1,0.1,0.1,0.6], size = (5,5))		#p = probability
+
+Probability Distributions in NumPy
+Poisson distribution: (lambda = 1) over a fixed interval of time, distance, or space we expect an event to occur exactly once
+Binomial distribution: measures how many times a certain outcome can appear over a series of trials, where there are only 2 possible outcomes
+
+array_RG = gen(pcg(seed = 365))
+
+array_RG.poisson(lam = 10, size = (5,5))						#Poisson distribution, 10 appears exactly once
+array_RG.binomial(n = 100, p = 0.4, size = (5,5))				#binomial distribution, n = number of trials, p = probability of getting our desired outcome, between 0 and 1, output -> each element is the number of times (out of 100) we’ve gotten our preferred outcome
+array_RG.logistic(loc = 9, scale = 1.2, size = (5,5))			#logistic distribution, loc = location, scale
+
+Application of Random Data in NumPy
+
+* When real data isn’t available, we sometimes need pseudo-random data to test how well a program performs
+
+	#to create an array of arrays
+	#create array of data for columns
+	#size to be consistent
+array_RG = gen(pcg(seed = 365))
+
+array_column_1 = array_RG.normal(loc = 2, scale = 3, size = (1000))
+array_column_2 = array_RG.normal(loc = 7, scale = 2, size = (1000))
+array_column_3 = array_RG.logistic(loc = 11, scale = 3, size = (1000))
+array_column_4 = array_RG.exponential(scale = 4, size = (1000))
+array_column_5 = array_RG.geometric(p = 0.7, size = (1000))
+
+	#transpose array to change row output to columns
+random_test_data = np.array([array_column_1, array_column_2, array_column_3, array_column_4, array_column_5]).transpose()
+random_test_data
+
+	#check shape
+random_test_data.shape
+
+	#save file
+np.savetxt("Random-Test-from-NumPy.csv", random_test_data, fmt = "%s", delimiter = ',')
+
+	#display file
+np.genfromtxt("Random-Test-from-NumPy.csv", delimiter = ',')
+
+* For above, don’t have to specify argument name, can just write argument, e,g.
+np.empty()			-> default argument = 1
+np.zeroes(5)		-> default stop = 5
