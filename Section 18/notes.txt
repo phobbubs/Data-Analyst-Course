@@ -1,0 +1,22 @@
+18 NumPy DataTypes
+
+ndArrays
+    * Originate from the NumPy package
+    * A special datatype in Python
+    * Can store multiple numeric values in a sequence
+    * Elementwise properties
+    * N-dimensional array
+* no. of square brackets -> dimensionality of array
+
+List vs Array
+* List displays elements in a line
+* Arrays displays them stacked like a matrix
+    * Arrays have shape, lists do not - lists have length
+* Biggest difference: arrays work elementwise
+* Ndarrays have the added benefit of using built-in functions and methods
+
+Strings vs Object vs Number
+Nan = not a number
+Dtype = object (exists for better compatibility with older versions of pandas package)
+	b -> a python object
+* Avoid specifying various datatypes when importing NumPy data
