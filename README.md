@@ -10,6 +10,8 @@ Start Date : 14 August 2023
 
 ## Contents
 
+- <b>Section 9</b> - [Working with Text Files](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%209)
+
 - <b>Section 15</b> - [pandas Series](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2015)
 
 - <b>Section 16</b> - [pandas DataFrame](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2016)
