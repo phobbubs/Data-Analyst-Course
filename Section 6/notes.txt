@@ -1,0 +1,72 @@
+5 Mathematics for Python
+
+Linear Algebra
+0-dimension: scalar (1 x 1)
+1-dimension: vector (m x 1)
+2-dimension: matric (m x n)
+
+Geometry
+0-dimension: point
+1-dimension: line
+2-dimension: 2 lines / plane
+
+Python - declaring scalars, vectors and matrices - Data Types
+Import numpy as np
+Scalars -> s = 5 -> int
+Vectors -> v = np.array([5, -2, 4]) (v is a row vector) -> numpy.ndarray (n-dimensional array)
+Matrices -> m = np.array([5, 12, 6], [-3, 0, 14]) -> 2 x 3 matrix -> numpy.ndarray
+s_array = np.array(5) -> numpy.ndarray
+
+Data Shapes (.shape -> returns shape(dimensions) of a variable)
+m.shape -> (2, 3)
+v.shape -> (3, )
+
+Creating a Column Vector (.reshape gives an array a new shape, without changing its data)
+v.reshape(1,3) -> row vector
+v.reshape(3,1) -> column vector
+
+Tensors -> Tensorflow
+Scalar (1x1) - rank 0
+Vector (mx1) - rank 1
+Matrix (mxn) - rank 2
+Tensor (kxmxn) - rank 3 == ndarray
+
+Addition & Subtraction
+- Must be the same m x n
+- Exception in addition with scalar -> adds scalar to all variables in vector/matrix
+
+Transposing Vectors (A.T)
+e.g. from row vector transposed (A^T) -> column vector
+- Values are not changing, only position is
+- Transposing same vector twice ((A^T)^T) yields original vector
+- M x n matrix transposed -> n x m matrix
+
+Dot Product / Multiplication (inner product, scalar product)
+np.dot(x,y)
+Vector . Vector
+Scalar . Scalar
+Scalar . Vector -> scaled value of initial vector
+
+Matrix Multiplication
+Scalar . Matrix -> scaled matrix
+Can only multiply an m x n matrix with an n x k matrix -> n must match 
+(M x n) . (N x k) = (m x k)
+1. Matrices are nothing more than a collection of vectors
+2. When we have a dot product, we always multiply a row vector times a column vector
+
+* Vectorized Code
+    * Inputs x weights (coefficients) = outputs
+    * Whenever we are using linear algebra to compute many values simultaneously
+        * Much faster
+    * Machine Learning
+* Image Recognition
+    * Deep learning, CNNS (convolutional neural networks)
+    * Zoom in until we see pixels -> reach out to see image
+        * How to represent colour
+            * 256 shades of grey (0 white, 255 grey)
+            * RGB (0 - 255)
+            * Tensors (3 x px length x px width)
+* Dimensionality Reduction
+    * Eigenvalues
+    * Eigenvectors
+    * Initial 3D (mx3) -> transformed 3D (mx2)
