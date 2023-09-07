@@ -1,0 +1,61 @@
+17 NumPy Fundamentals
+
+Indexing
+
+* Be consistent with indexing method
+array_a[0][1] == array_a[0,1]
+array_a[:, 2]								#interval index
+
+Assigning Values
+
+array_a[:] = 9								#changes all values in array to 9
+
+Elementwise Properties of Array
+
+Array +-*/ 2 -> alters all values in array
+List +- [2] -> adds ‘2’ to list as an item
+
+List VS Arrays
+* Serve different purposes
+* Lists store data
+* Arrays compute mathematical operations
+
+1d_array + 2d_array[0] -> element wise addition
+
+* Arrays of different dimensions can be operated together
+    * Shapes of arrays must be compatible
+    * Length of 1D-array must equal to “length”(rows) of 2D-array
+
+Types of Data Types Supported by C
+
+array_a = np.array([1,2,3],[4,5,6], dtype = “float32”)		#arrays can contain numbers, all numeric types supported by C
+array_a = np.array([1,2,3],[4,5,6], dtype = np.float32)		#float32 allows 32 bits of memory for each element of the array
+* Use consistent representation
+e.g.  np. float16, 32, 64 - complex64 (real number + imaginary number j) - bool (True if != 0, False if 0), str (<U - unicode)
+
+Characteristics of NumPy Function
+
+* Universal parameters
+* Universal functions
+
+Broadcasting
+    * Sometimes we want to conduct elementwise operations but have elements of different sizes and/or different dimensions
+    * We can broadcast the smaller variable and create a broadcasted version with the size of the larger one
+    * i.e. “stretching” one variable over the other to produce an output with the same shape
+np.add(array_a, matrix_c)
+* To be broadcast-able
+    * Arrays have the same shape
+    * Arrays have the same no. of dimensions, and length of each dimension is either common or 1
+    * Arrays that have too few dimensions can have their shapes altered with a dimension 1, to satisfy second rule
+
+Typecasting
+* Taking every element of an array and changing it to a specified datatype
+np.add(array_a, matrix_c, dtype = np.float64)		#presents values as floats instead of integers
+* Changes the input data types themselves, not only the results
+
+Running (a function) over an Axis
+1. NumPy breaks down an ND-array into smaller arrays of (N1)-many-arrays
+2. Applies the function to each one
+3. Can use this function to run along each row/column
+np.mean(matrix_c, axis = 0)						    #axis = 0: finding the mean for each column of the array
+np.mean(matrix_c, axis = 1)						    #axis = 1: finding the mean for each row of the array
