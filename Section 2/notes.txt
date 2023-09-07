@@ -1,0 +1,52 @@
+1 Data Analyst Course (Udemy)
+
+Subtasks: 
+1. Data gathering
+2. Data cleaning
+3. Data preprocessing
+4. Data manipulation
+5. Data visualisation
+6. Data interpretation/analysis
+
+API -> to retrieve data
+
+Python - open source (free, constantly updating), general purpose (intended to provide solution for all types of problems) high-level (employing syntax close to human logic, low-level languages = machine languages -> code containing 1s and 0s) programming language - can expand focus towards next steps of analytics process, predictive and prescriptive
+- Pandas
+    - Series
+    - DataFrame
+- NumPy
+    - 1D Array
+    - 2D Array
+    - 3D Array
+- Matplotlib, seaborn
+    - Visualisation
+
+1. General Theory
+    1. Data analystics
+    2. Basic & advanced python
+2. NumPy and Pandas Basics
+    1. Text files (.csv, .xlsx, .json)
+    2. Data types (text, numeric, boolean)
+3. Working with Text Data
+    1. Text -> List comprehensions, Anonymous functions
+4. Data Collection
+    1. Data extraction from API
+5. Pandas - Basics
+    1. Data cleaning
+6. Numpy - Basics
+    1. Data processing with numpy arrays
+7. Practice
+8. Data Visualisation
+9. Practical Example
+
+Data Types
+Qualitative - text, descriptive, no numbers, no precise specification but approximates
+Quantitative - numeric, quantifiable information, involved in statistical and mathematical computations
+
+Analysis VS Analytics
+Analysis - separation of whole into smaller, digestible components, studied individually and examined how they relate to other parts, contains past data
+Analytics - future performance, logical and computation reasoning in data, explore patterns, forward looking
+
+Business Intelligence - studies past of a company, includes CA and DA, take full advantage of relational databases
+Data Science - relies on certain characteristics of business and data analytics, involves implementation of ML algos
+
