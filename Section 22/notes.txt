@@ -1,0 +1,242 @@
+22 NumPy Preprocessing
+
+Checking for Missing Values
+np.isnan()
+lending_co_data_numeric = np.loadtxt("Lending-company-Numeric.csv", delimiter = ',')		#use loadtxt - will crash if there are missing values
+np.isnan(lending_co_data_numeric)
+		#returns an array with the same shape and size as the input
+		#every individual element of the original array is replaced with a boolean
+		#true -> missing value -> 1
+		#false -> no missing value -> 0
+np.isnan(lending_co_data_numeric).sum()											#to check - if no missing values, should equate to 0
+
+lending_co_data_numeric_NAN = np.genfromtxt(“Lending-company-Numeric-NAN.csv", delimiter = ‘;’, filling_values = 0)
+		#use genfromtxt for files with missing values
+		#fill_values temporarily fixes the programme, but not optimal to use 0 as it can be replaced with a meaningful value
+temporary_fill = np.nanmax(lending_co_data_numeric_NAN).round(2) + 1
+		#good practice to round values when working with decimals
+		#+1 to ensure temporary fills outside range of dataset
+np.isnan(lending_co_data_numeric_NAN).sum()										#check all missing values are filled
+
+Substituting Missing Values
+np.where()
+* All “missing values” are equal to the maximum of the array
+* If a value is equal to the maximum of the array, it’s actually a “missing” value
+* Fill all missing values with the mean:
+    * This won’t change the overall interpretation of the dataset
+    * All missing values would be considered average
+    * Not always valid, but often preferred approach
+
+temporary_mean = np.nanmean(lending_co_data_numeric_NAN, axis = 0).round(2)
+lending_co_data_numeric_NAN[:,0] = np.where(lending_co_data_numeric_NAN[:,0] == temporary_fill,		#condition to be fulfilled
+                                           temporary_mean[0],										#value to be used if condition is met
+                                            lending_co_data_numeric_NAN[:,0])						#value to be used if condition is not met (itself)
+
+		#^ every non-filler value will remain unchanged
+		#^ every filler will now contain the mean of the column instead
+
+for i in range(lending_co_data_numeric_NAN.shape[1]):
+    lending_co_data_numeric_NAN[:,i] = np.where(lending_co_data_numeric_NAN[:,i] == temporary_fill,
+                                           temporary_mean[i],
+                                            lending_co_data_numeric_NAN[:,i])
+
+		#^ use loop to substitute missing values for every column
+
+Reshaping Ndarrays
+* Why useful?
+    * The act of morphing the shape of an object a certain way
+    * Certain conditions about shapes and sizes need to be met
+    * Not always possible to store the outputs of a function as a part of an existing array (or series)
+
+lending_co_data_numeric.shape							#(1043,6)
+np.reshape(lending_co_data_numeric, (6,1043))			#either representations work
+lending_co_data_numeric.reshape(6, 1043)
+		#reshaped array ->
+		#first row: first 1043 values of flattened array
+		#second row: next 1043 values of flattened array…
+		#last row: last 1043 values of flattened array
+		#reshaped array must have the same total value as original array
+np.transpose(lending_co_data_numeric)					#flips rows and columns
+np.reshape(lending_co_data_numeric, (1,1,2,3,1043))
+		#adding dimensions -> useful when a method or function only takes inputs with a higher number of dimensions than the array we want to plug in
+* Does not immediately alter the data set
+
+Removing Values from Ndarrays
+np.delete()
+
+np.delete(lending_co_data_numeric, 0)					#deletes first value in flattened array
+np.delete(lending_co_data_numeric, 0, axis = 1)			#deletes first column of array
+np.delete(lending_co_data_numeric, 0, axis = 0)			#deletes first row of array
+np.delete(lending_co_data_numeric, (0,2,4), axis = 1)		#deletes multiple columns of array
+
+Sorting Ndarrays
+np.sort()
+* Rearranges values in ascending order
+np.sort(lending_co_data_numeric)						#default axis = -1 = the “last” axis = the column axis -> rearranging the columns in every row
+np.sort(lending_co_data_numeric, axis = None)			#flattened 1D array output
+np.sort(lending_co_data_numeric, axis = 0)				#sorted in ascending order by rows
+-np.sort(-lending_co_data_numeric)					#sorted in descending order		
+
+np.set_printoptions(suppress = True)					#suppresses scientific notation, to be careful as this will apply to entire work
+
+* Above functions do not alter the original dataset, method does
+lending_co_data_numeric.sort(axis = 0)
+lending_co_data_numeric
+
+Argument Sort in NumPy
+np.artsort()
+* Returns indices of the sort of the array
+
+np.argsort(lending_co_data_numeric)
+
+	#arrange rows based on ascending value of first column of data (i.e. useful when each row contains info about a specific client/date)
+lending_co_data_numeric = lending_co_data_numeric[np.argsort(lending_co_data_numeric[:,0])]
+lending_co_data_numeric
+
+lending_co_data_numeric.argsort(axis = 0)				#does not overwrite original array
+
+Argument Where in NumPy
+
+np.argwhere()
+* Goes over the entire NDarray and checks whether the individual elements satisfy a given condition
+* The outputs are the indices for all the individual elements where the condition is met
+* Use this function to separate only the elements that interest us and examine just them
+* Does not have attribute method (i.e. lending_co_data_numeric.argwhere())
+
+np.argwhere(lending_co_data_numeric)					#default condition checks elements that =/= 0
+		#1st column of output: row index
+		#2nd column of output: column index
+np.argwhere(lending_co_data_numeric == False)			#checks for elements that == 0
+np.argwhere(lending_co_data_numeric %2 == 0)			#even elements
+
+* Similar to “filtering” related to conditional slicing
+    * Slicing gives actual values
+    * np.argwhere() returns their coordinated within the array
+
+		#to find missing values
+lending_co_data_numeric_NAN = np.genfromtxt("Lending-company-Numeric-NAN.csv", delimiter = ';')
+lending_co_data_numeric_NAN
+np.isnan(lending_co_data_numeric_NAN)									#check False/True for NAN elements
+np.argwhere(np.isnan(lending_co_data_numeric_NAN))						#produce index for NAN elements
+lending_co_data_numeric_NAN[175]										#check that NAN index is correct
+for array_index in np.argwhere(np.isnan(lending_co_data_numeric_NAN)):			#loop through array to replace NAN with 0
+    lending_co_data_numeric_NAN[array_index[0], array_index[1]] = 0
+lending_co_data_numeric_NAN[175]										#check that NAN is replaced
+
+Shuffling Data
+* Rearranging the parts of a dataset
+* Do so without a fixed pattern
+* End goal: a random sample that would be representative of the entire dataset
+* Analogy: shuffling cards
+* Entire rows of data get moved up (or down) the dataset
+* Contents remain unchanged
+* Data stored on the same row often refers to the same client/date
+
+np.random.shuffle(lending_co_data_numeric)
+
+* Whenever using the same function/method many times in analysis, it’s a good idea to directly import it
+from numpy.random import shuffle
+shuffle(lending_co_data_numeric)
+lending_co_data_numeric
+
+Using shuffle with random Generator
+from numpy.random import Generator as gen
+from numpy.random import PCG64 as pcg
+array_RG = gen(pcg())
+array_RG.shuffle(lending_co_data_numeric)
+lending_co_data_numeric
+* Using seeds to fix random generator does not work with shuffle, shuffle cannot be replicated even with seeds
+
+Casting Ndarrays
+
+Type Casting (Casting):
+* Taking an object with values of a certain datatype and creating an identical object that contains values of a different datatype
+* Creating a new array that stores the values of the original array under a different type
+* e.g. decimals <-> integers
+ndarray.astype()									#astype -> assign type
+lending_co_data_numeric.astype(dtype = np.int32)
+lending_co_data_numeric = lending_co_data_numeric.astype(dtype = str)
+lending_co_data_numeric.astype(dtype = np.float32).astype(dtype = np.int32)		#chaining - to convert strings of decimal values to integers
+
+Stripping Values from Ndarrays
+np.chararray.strip()
+* Removing specific parts of strings
+* Not straight up deleting the values stored in specific positions… but rather taking away small parts
+* Allows us to get rid of excess data
+
+lending_co_total_price = np.genfromtxt("Lending-Company-Total-Price.csv",
+                                      delimiter = ',',
+                                      dtype = str,
+                                      skip_header = 1,
+                                      usecols = [1,2,4])
+lending_co_total_price
+lending_co_total_price[:,0] = np.chararray.strip(lending_co_total_price[:,0],"id_")				#remove “id_” from 1st column
+lending_co_total_price[:,1] = np.chararray.strip(lending_co_total_price[:,1],"Product ")		#remove “Product “ from 2nd col
+lending_co_total_price[:,2] = np.chararray.strip(lending_co_total_price[:,2],"Location ")		#etc
+lending_co_total_price
+
+* Apply np.where() to transform the letters in the second column to numeric values
+lending_co_total_price[:,1] = np.where(lending_co_total_price[:,1] == 'A', 1, lending_co_total_price[:,1])
+lending_co_total_price[:,1] = np.where(lending_co_total_price[:,1] == 'B', 2, lending_co_total_price[:,1])
+lending_co_total_price[:,1] = np.where(lending_co_total_price[:,1] == 'C', 3, lending_co_total_price[:,1])
+lending_co_total_price[:,1] = np.where(lending_co_total_price[:,1] == 'D', 4, lending_co_total_price[:,1])
+lending_co_total_price[:,1] = np.where(lending_co_total_price[:,1] == 'E', 5, lending_co_total_price[:,1])
+lending_co_total_price[:,1] = np.where(lending_co_total_price[:,1] == 'F', 6, lending_co_total_price[:,1])
+lending_co_total_price
+
+Stacking Ndarrays
+np.stack()
+* Placing multiple objects on top of one another to create a bigger (larger) object
+* We can just stack arrays of matching shapes to create a larger array - a “stack”
+
+np.stack((lending_co_data_numeric[:,0], lending_co_data_numeric[:,1]))			#stack first and second column -> rows
+np.stack((lending_co_data_numeric[:,0], lending_co_data_numeric[:,1]), axis = 1)	#stack as columns
+np.transpose(lending_co_data_numeric[:,:2])								#equivalent to the first stack
+* All input arrays must have the same shape
+
+np.vstack()
+* v stack = vertical stack
+* Function stacks 2-D arrays vertically
+* Places the first array on top of the second one
+* Results in a “longer” array
+np.vstack((lending_co_data_numeric, lending_co_data_numeric_NAN)).shape		#(2086, 6)
+
+np.hstack()
+* H stack = horizontal stack
+* Stacks values horizontally
+* The result should be a “wider” array
+np.hstack((lending_co_data_numeric, lending_co_data_numeric_NAN)).shape		#(1043, 12)
+
+np.dstack()
+* D stack = depth stack
+* Stacks arrays in the third dimension
+* Returns an array of a higher dimension
+np.dstack((lending_co_data_numeric, lending_co_data_numeric_NAN)).shape			#(1043, 6, 2) -> row, column, original array
+np.stack((lending_co_data_numeric, lending_co_data_numeric_NAN), axis = -1)		#same as above
+* Stack function always returns an output that is exactly 1 dimension more than its inputs
+* Since np.dstack() works along the “third” axis, the two functions work identically (for 1-D and 2-D arrays)
+
+Concatenating
+
+np.concatenate()
+* Linking together objects in a chain
+* Creating a new (larger) array by merging existing smaller arrays along a given axis
+* Inputs and outputs always have the same number of dimensions
+np.concatenate((lending_co_data_numeric[0,:], lending_co_data_numeric[1,:]))			#side by side, 1-D array
+np.concatenate((lending_co_data_numeric, lending_co_data_numeric_NAN), axis = 1)		#side by side, 2-D array
+np.concatenate((lending_co_data_numeric, lending_co_data_numeric_NAN), axis = 0)		#on top of the other, 2-D array
+* Concatenate can act the same as v, h and d stack by change axis for a 3-D axis
+* For 1-D arrays, don’t have to have the same dimension to concatenate
+* If we have arrays of the same dimensions but different shapes, can still concatenate them only if their dimensions match for the axis we’re concatenating along
+
+Find Unique Values in Ndarrays
+np.unique()
+* Takes an array as an input and creates another array that contains all the different values from the first one
+* Any value can feature only once in the np.unique() output
+* Output arrange in “increasing” fashion for numeric values
+* Non-numeric values (strings) are arranged based on ASCII values (A < a, A < B, a < b, 3 < A)
+
+np.unique(lending_co_data_numeric[:,1], return_counts = True)
+		#second array output shows how many times each value appears
+np.unique(lending_co_data_numeric[:,1], return_counts = True, return_index = True)
+		#new second array is the return_index -> index array
