@@ -1,0 +1,26 @@
+3 Setting up the Environment (Jupyter)
+
+Source code (human-readable code) -> Software -> Binary (readable by computer)
+
+Program: sequence of instructions that designate how to execute a computation
+Programming: taking a task and writing it down in a programming language that the computer can understand and execute
+
+Computer science: about understanding what computers can do
+Programming: activity of telling computers what to do for us
+
+1. Problem-solving skills and abstract thinking -> breaking down into steps
+3. Mechanistic thinking - code instructions, syntax of programming language
+4. Good style of coding
+
+Language Kernels (programs designed to read and execute code in a specific language) - Python, R, Julia
+Interfaces (Clients) - web browser, other interfaces
+
+.ipynb - iPython Notebook File
+
+Jupyter
+- Test
+- Code
+- Output (results, figures, graphs, pictures, others)
+
+Anaconda
+- Software package that contains python and Jupiter
