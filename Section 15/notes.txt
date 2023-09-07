@@ -1,0 +1,49 @@
+15 pandas Series
+
+Unique Values
+data = pd.read_csv('Region.csv’).squeeze(“columns”)		#load file with pandas
+region_data = data.copy()						        #store file
+region_data.head()									    #preview file
+region_data.describe()								    #obtain descriptive statistics
+
+len(region_data)									    #no. of values in Series
+location_data.nunique()								    #no. of unique values in Series
+location_data.unique()								    #list of unique values from Series, delivers the values in the order they appear in the data set
+
+Converting Series into Array
+* Devs don’t recommend use of Series.values method -> use Series.array or Series.to_numpy()* instead
+.array -> will convert Series into a pandas array/an ExtensionArray
+- Useful in making calculations in pandas, as will be able to take advantage of underlying data
+.to_numpy()
+- Will organise information into a pure NumPy array structure
+
+pd.sort_Values()
+import pandas as pd
+numbers = pd.Series([15, 1000, 23, 45, 444])
+numbers.sort_values()							        #sort in ascending order by default for numerics, in alphabetical order for strings
+numbers.sort_values(ascending=True)
+numbers.sort_values(ascending=False)				    #sort in descending order
+
+Attribute and Method Chaining
+Attribute chaining
+* allows us to sequentially refer to the values obtained by the different attributes
+location_data.index								        #retrieves index range
+location_data.name							            #name of column in Series
+location_data.index.name = ‘Index’				        #set name associated to range index object, different from name of the Series
+
+Method chaining
+* Organises and applies several method calls on a certain object in a given order
+* Each call performs its action and returns an intermediate output
+* Every next method from the chain respects the value returned by the previous one
+* We are not required to explicitly store:
+    * Intermediate output
+    * Intermediate result
+    * Intermediately returned values
+* Method chaining saves the time necessary for creating a variable and thinking of a relevant name
+
+.sort_index()
+Chaining techniques <-> assignment statements
+* .sort_values() doesn’t overwrite the contents
+* index.sort_values() is only useful if you need to obtain the sorted index structure as a separate entity for some reason
+* .sort_index() creates a temporary copy of the object’s data it’s been applied to and displays the out of its manipulation
+    * Does not affect state of initial data set
