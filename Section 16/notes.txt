@@ -1,0 +1,65 @@
+16 pandas DataFrames
+
+Import numpy as np
+Import pandas as pd
+
+array_a = np.array([[3,2,1],[6,3,2]])											#set an array
+pd.DataFrame(array_a)														    #convert array to DataFrame
+Df = pd.DataFrame(array_a, columns = [‘Col1’, ‘Col2’, ‘Col3’])					#set column names
+Df = pd.DataFrame(array_a, columns = [‘Col1’, ’Col2’, ’Col3’], index = [‘Row1’, ‘Row2’])	#set column and row names
+
+Data = pd.read_csv(‘Lending-company.csv’, index_col = ‘LoanID’)					#load data, set ‘LoanID’ as index column
+lending_co_data = data.copy()
+lending_co_data.head()															#preview data
+
+Common Attributes for Working with DataFrames
+lending_co_data.index()															#check index column list and description
+lending_co_data.columns															#check column names
+lending_co_data.axes															#check index column list and column names
+lending_co_data.dtypes															#check data type for columns
+lending_co_data.values															#all data stored in an array
+lending_co_data.to_numpy()														#all data converted to numpy array
+lending_co_data.shape															#show dimensionality of object
+
+Data Selection in pandas DataFrame
+
+Data selection/Subset selection in a pandas DataFrame
+- extracting elements, rows, columns or subsets from such an object
+- Allows us to work on just a portion of a dataset
+* Through Indexing
+    * Using one or both types of indexes to access or select specific parts of the data (row index or column index)
+
+1. Attribute-type access
+lending_co_data.Product									#access “Product” column index
+lending_co_data[‘Product’]								#access column name of interest as a string “Product” **preferred
+lending_co_data[[‘Location’]]							#double brackets - access single element as a DataFrame by nesting list within indexing operator
+Prod_loc = [‘Location’, ‘Product’]						#more elegant to store list containing column names in a separate variable
+lending_co_data[prod_loc].head()						#preview data
+
+Data Selection - indexing with .iloc[]
+DataFrame.iloc - an accessor/indexer, integer-location based indexing for selection by position
+* Strict implicit, integer-location, position-based indexing
+lending_co_data[1]					X					#yields error
+lending_co_data.iloc[1]				O					#row specifier = row indexer
+lending_co_data.iloc[1, 3]			O					#column specifier, good practice to indicate value for the pair
+lending_co_data.iloc[1, :]			O					#retrieves data from all rows
+lending_co_data.iloc[:, 3]			O					#retrieves data from all columns
+lending_co_data.ilox[[1, 3], :]		O					#retrieve data from 2nd and 4th rows
+lending_co_data.iloc[:, [1, 3]]		O					#retrieve data from 2nd and 4th columns
+
+Data Selection - indexing with .loc[]
+= loc indexer = loc accessor 
+* Label-based indexing
+* Sub-select information from a DataFrame by referring to its index labels
+* loc[] designed to take advantage of the explicit index and column labels of data table
+data = pd.read_csv('Lending-company.csv', index_col = 'StringID')
+lending_co_data = data.copy()
+lending_co_data[‘LoanID_3’, ’Region’]					#similar principles to iloc() - use pair values
+
+
+* If using .iloc[] and .loc[] together to retrieve a series, only use row specifier, don’t provide column specifier
+* Strict .iloc[] and .loc[] indexers help us be specific, use .iloc[] and/or .loc[], don’t use chained indexing
+* Avoid using consecutive numbers as index labels, use strings as labels, use indices containing non-consecutive numbers
+* .iloc[] - position-based indexing, .loc[] - location-based indexing
+* Add colon to improve legibility
+* Narrow down using .iloc[] for integer position, or .loc for index labels access specifically
