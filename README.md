@@ -56,6 +56,8 @@ Start Date : 14 August 2023
 
 - <b>Section 24</b> - ["Absenteeism" Exercise](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2024)
 
+- <b>Section 25</b> - [Data Visualisation](https://github.com/phobbubs/Data-Analyst-Training/tree/main/Section%2025)
+
 <h5 align="center">
 Last Updated : 7 September 2023
 </h5>
