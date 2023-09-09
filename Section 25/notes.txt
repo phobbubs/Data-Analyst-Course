@@ -1,0 +1,213 @@
+25 Data Visualisation (Introduction)
+
+* By visualising data, we can spot patterns, which would otherwise remain hidden in a data table
+* Helps us present our findings to others
+* A universal language, spoken across almost every industry
+* Your audience make key strategic decisions based on your data
+
+* Excel, tableau, powerBI
+* Python, R -> data viz packages
+
+Theory
+* Gather data (assume already done for you)
+* Choose the right visualisation
+* Visualise and style the data
+
+Choosing the Right Visualisation
+
+* Statistics
+    * Types of data and levels of measurement
+
+1. Categorical Data
+    1. Describes categories or groups
+    2. e.g. yes/no
+2. Numerical Data
+    1. Represents numbers
+
+* Bar chart
+    * Has several categories/bars (x axis)
+    * Numerical measure (y axis)
+* Pie chart
+    * Similar to bar chart
+* Scatter plot
+    * Numerical values on both axis
+* Line chart
+    * Date - time series (y axis) against numerical (y axis)
+* From Data to Viz (website?)
+
+* Stay away from complex plots, keep things simple
+* Don’t choose a chart that can be misinterpreted
+* Don’t stay away from rudiments (simple)
+
+Colours / Colour Theory
+
+* Colour can greatly change how we perceive information
+* Our perception of colour depends on the light
+    * Also depends on interpretation of our brains
+* 5-10% of humans suffer from some level of colourblindness
+
+1. Colours can be used to convey extra information
+2. Colour can enhance the appearance of our chart
+    1. Too many colours is not always a good thing
+    2. Don’t use more than 3 colours, ideally keep to 2 colours
+3. Colours should be chosen carefully
+    1. Colour theory
+
+* Primary colours: red, blue, yellow
+* Secondary colours - mix between primary colours: purple, green, orange
+* Tertiary colours - others
+* Colour wheel
+
+* Saturation, Hue, Lightness, Shade, Tip, Tone, Temperature, etc.
+
+* Screens: RGB
+* Printers: CMYK
+
+Don’t overly focus on picking colours
+* Work with any dictated colour schemes
+* Coolors.co
+
+24 Data Visualisation (Charts)
+
+Bar Chart
+
+* A popular way to visualise data
+* Among the clearest and most straightforward visual representations of information
+
+import pandas as pd								# library for data manipulation
+import matplotlib.pyplot as plt						# library for visualization
+import seaborn as sns								# library for visualization
+sns.set()											# this command sets the seaborn chart style as the default
+
+from matplotlib.ticker import PercentFormatter #converts values into percentage format
+
+* Matplotlib has a default setting for chart formatting
+    * Fonts, fontsize
+    * Background themes
+    * Etc
+
+* Seaboard has become the preferred choice for data viz
+    * Built on top of matplotlib
+
+Pie Chart
+
+* Avoid using pie charts
+* Considered one of the worst choices for data viz
+    * Human eye is not great at interpreting non-rectangular visuals
+* Preferred for presenting parts of a whole (percentage)
+
+Don’t use when
+* Wrong type of data
+* If there are too many categories (max 6-7)
+* If data doesn’t sum up to 100%
+* Applies to doughnut pie charts
+
+Recommended to use when
+* Few categories
+* Adds up to 100%
+
+sns.set_palette('colorblind')
+
+Stacked Area Chart
+Describe changes in variables over time
+* Area and line charts are good options for timeline
+* Used to display quantitative data for three or more numerical variables
+
+1. Classic Area Chart
+    1. Overlap among categories
+2. Stacked Area Chart
+    1. No overlap among categories
+    2. The entire area is the sum of all categories
+3. 100% Stacked Area
+    1. All categories sum up to 100%
+    2. No overlap among categories
+4. Steam graph
+    1. Displayed around a central category
+    2. No overlap among categories
+
+Stacked Area Chart
+* Conveys a lot of information
+* Discovers trends and patterns in the data
+* Follows development of several different variables over time
+
+When to use:
+* When we have time data
+* When we want to compare the volume among categories
+* When we have at least 3 categories
+* When the variables are ordered and numerical
+* When we have no more than 6-7 categories
+* Y-axis must start at 0
+
+Line Charts
+
+* Evolution of one or several quantities
+* Represent time series data
+* Focus on stock market returns
+
+- Think about narrowing time frame
+
+When to use:
+* When displaying time series data
+* When we have several different variables
+    * 3, 5 or even 10 variables over time
+* When displaying multiple categories
+
+When not to use:
+* When we have too many categories -> spaghetti chart
+
+Where to start
+* Does not have to start y-axis at 0
+
+Histogram
+* Shows the distribution of a numeric value
+* The variables range of values is split into intervals, represented by different bins
+* Height of the bins shows the number of observations within an interval
+
+X-axis: ascending order
+Y-axis: frequency of occurrence / density function
+
+[a,b] - inclusive of a & b
+(a, b] - inclusive of b, exclusive of a
+
+Number of bins
+* Depends on nature of data and its distribution
+* 6-10 most feasible
+* Interval width can be deliberately altered -> might allow misinterpretation
+
+When to use:
+* Start y-axis at 0
+* Does not have to be numerical
+    * Likert scale -> strong agree, agree, neutral, disagree, strongly disagree (5-1)
+
+Scatter Plot
+Shows the relationship between two numerical features
+
+* Can display a large number of points
+* Each observation is a point on that scatter
+* Our data is not aggregated
+
+Danger of Overplotting
+* Sampling should be random
+* A subset small enough to avoid over plotting, but large enough to contain the data pattern
+ Regression Plot
+* Linear regression
+    * Aim to find a hyperplane or line which best fits the data
+    * Linear, exponential, logarithmic, polynomial
+
+Regression Equation
+* Slope: direction & steepness
+* Intercept: the place where the regression line intersects the y-axis
+* R^2: variance of data captured by the model
+
+Bar and Line Chart (Combination Chart)
+Pareto Chart
+* bar chart: in descending order of frequency
+* Line chart: sum of relative frequencies = cumulative frequency (sums up to 100%)
+
+Y-axis - primary axis
+- Refers to bars
+- Displays number of occurrences
+
+X-axis - secondary axis
+- Refers to line chart
+- Cumulative frequency
